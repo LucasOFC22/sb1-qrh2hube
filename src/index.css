@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-y: scroll;
+  }
+  
+  body {
+    @apply bg-white;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Improve scroll performance */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@layer components {
+  .form-input {
+    @apply w-full px-4 py-4 rounded-lg border border-gray-200 bg-white
+           focus:border-blue-500 focus:ring-2 focus:ring-blue-100
+           transition-colors duration-200
+           placeholder:text-gray-400 text-gray-700 text-lg;
+    min-height: 3.5rem;
+  }
+
+  .form-label {
+    @apply block text-base font-medium text-gray-700 mb-2;
+  }
+
+  .form-section {
+    @apply bg-white p-8 rounded-xl border border-gray-100
+           hover:border-gray-200 transition-colors duration-200
+           shadow-sm hover:shadow-md;
+  }
+
+  .nav-link {
+    @apply text-gray-600 hover:text-blue-600 transition-colors duration-200;
+  }
+
+  .nav-link-mobile {
+    @apply text-gray-600 hover:text-blue-600;
+  }
+}
+
+/* Optimized animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out forwards;
+  will-change: opacity;
+}
+
+/* Optimized scrollbar */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-50;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+/* Performance optimizations */
+* {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
